@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+eslint src --fix
+
+git add src
+
+git update-index --again

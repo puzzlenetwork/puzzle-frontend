@@ -1,0 +1,35 @@
+{
+  "name": "Ranges Finance | Swap Tokens Within Liquidity Ranges",
+  "short_name": "Ranges Finance | Swap Tokens Within Liquidity Ranges",
+  "description": "Swap tokens seamlessly inside customizable liquidity ranges. Efficient, low-slippage DeFi trading powered by Ranges Finance.",
+  "icons": [
+    {
+      "src": "./pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./pwa-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505"
+}
