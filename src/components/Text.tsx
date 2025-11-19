@@ -39,4 +39,3 @@ const Text = styled.div<TextProps>`
   cursor: ${({ pointer }) => (pointer ? "pointer" : "inherit")}
 `;
 export default Text;
-export { TEXT_TYPES_MAP };

@@ -41,6 +41,10 @@ const MENU_ITEMS: Array<MenuItem> = [
     title: "TRADE",
     link: ROUTES.ROOT,
   },
+  {
+    title: "POOLS",
+    link: ROUTES.POOL_LIST,
+  },
 ];
 
 const DROPDOWN_VARIANTS = {

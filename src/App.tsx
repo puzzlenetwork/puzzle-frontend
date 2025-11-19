@@ -1,9 +1,11 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react";
 
 import { Column } from "@components/Flex";
 import Header from "@components/Header";
+import { PoolList } from "@components/PoolList/PoolList";
 
 import { useClearUrlParam } from "@hooks/useClearUrlParam";
 
@@ -22,7 +24,10 @@ const App: React.FC = observer(() => {
   return (
     <Root>
       <Header />
-      <SwapScreen />
+      <Routes>
+        <Route element={<SwapScreen />} path="/" />
+        <Route element={<PoolList />} path="/pools" />
+      </Routes>
       <Footer />
     </Root>
   );
