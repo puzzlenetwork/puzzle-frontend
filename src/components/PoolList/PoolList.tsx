@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { getPublicClient } from "@wagmi/core";
 import { observer } from "mobx-react";
-import { useAccount } from "wagmi";
 
 import { Column, Row } from "@components/Flex";
 import Text from "@components/Text";
 import { media } from "@themes/breakpoints";
 
-import { wagmiConfig } from "@constants/wagmiConfig";
-
 import { PoolDetails, PoolDetailsService } from "../../services/PoolDetailsService";
-import rangePoolFactoryService from "../../services/rangePoolFactoryService";
+import PoolListService from "../../services/PoolListService";
 
-interface PoolCreatedEvent {
-  pool: string;
+interface PoolData {
+  poolAddress: string;
   blockNumber: number;
   transactionHash: string;
+  name: string;
+  symbol: string;
+  totalSupply: string;
+  tokens: TokenInfo[];
+}
+
+interface TokenInfo {
+  address: string;
+  name: string;
+  symbol: string;
+  decimals: number;
 }
 
 export const PoolList: React.FC = observer(() => {
-  const { isConnected } = useAccount();
-  const [pools, setPools] = useState<PoolCreatedEvent[]>([]);
+  const [pools, setPools] = useState<PoolData[]>([]);
   const [poolDetails, setPoolDetails] = useState<Record<string, PoolDetails>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -30,19 +36,15 @@ export const PoolList: React.FC = observer(() => {
     const fetchPools = async () => {
       try {
         setLoading(true);
-        const publicClient = getPublicClient(wagmiConfig);
-        if (!publicClient) {
-          throw new Error("Public client not available");
-        }
 
-        await rangePoolFactoryService.initialize(publicClient);
-        const poolEvents = await rangePoolFactoryService.fetchAllPoolCreatedEvents();
-        setPools(poolEvents);
+        // Load full pool data from preloaded JSON file using PoolListService
+        const fullPoolData = await PoolListService.getPoolsData();
+        setPools(fullPoolData);
         setError(null);
 
         // Fetch additional details for each pool
-        if (poolEvents.length > 0) {
-          const poolAddresses = poolEvents.map((pool) => pool.pool);
+        if (fullPoolData.length > 0) {
+          const poolAddresses = fullPoolData.map((pool) => pool.poolAddress);
           const details = await PoolDetailsService.fetchMultiplePoolDetails(poolAddresses);
 
           // Convert details array to a map for easier lookup
@@ -61,9 +63,9 @@ export const PoolList: React.FC = observer(() => {
       }
     };
 
-    // Fetch pools regardless of connection status
+    // Fetch pools
     fetchPools();
-  }, [isConnected]);
+  }, []);
 
   const shortenAddress = (address: string) => {
     if (address.length < 10) return address;
@@ -112,12 +114,12 @@ export const PoolList: React.FC = observer(() => {
               </TableHeaderCell>
               <TableHeaderCell>
                 <Text type="BUTTON_SECONDARY" uppercase={true}>
-                  Token 0
+                  Token Symbols
                 </Text>
               </TableHeaderCell>
               <TableHeaderCell>
                 <Text type="BUTTON_SECONDARY" uppercase={true}>
-                  Token 1
+                  Total Supply
                 </Text>
               </TableHeaderCell>
               <TableHeaderCell>
@@ -145,22 +147,24 @@ export const PoolList: React.FC = observer(() => {
 
           <TableBody>
             {pools.map((pool, index) => {
-              const details = poolDetails[pool.pool] || null;
+              const details = poolDetails[pool.poolAddress] || null;
               return (
                 <TableRow key={index}>
                   <TableCell>
                     <Text nowrap={true} primary={true} type="BODY">
-                      {shortenAddress(pool.pool)}
+                      {shortenAddress(pool.poolAddress)}
                     </Text>
                   </TableCell>
                   <TableCell>
                     <Text nowrap={true} primary={true} type="BODY">
-                      {details ? details.token0 : "Loading..."}
+                      {pool.tokens && pool.tokens.length > 0
+                        ? pool.tokens.map((token) => token.symbol).join(", ")
+                        : "Loading..."}
                     </Text>
                   </TableCell>
                   <TableCell>
                     <Text nowrap={true} primary={true} type="BODY">
-                      {details ? details.token1 : "Loading..."}
+                      {pool.totalSupply || "N/A"}
                     </Text>
                   </TableCell>
                   <TableCell>
