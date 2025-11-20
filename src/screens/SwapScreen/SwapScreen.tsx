@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react";
@@ -36,6 +37,41 @@ export const SwapScreen: React.FC = observer(() => {
   const { data } = useBalance({ address: accountStore.address });
   const ethBalance = new BN(data?.formatted ?? "0");
   const tokens = swapStore.tokens;
+
+  // Get pool address from URL params
+  const { poolAddress } = useParams<{ poolAddress: string }>();
+
+  // State to track if tokens have been loaded for the pool
+  const [isPoolTokensLoaded, setIsPoolTokensLoaded] = useState(!poolAddress); // If no poolAddress, consider loaded
+  const [poolTokensAddresses, setPoolTokensAddresses] = useState<string[]>([]);
+
+  // Effect to handle pool-specific token selection
+  useEffect(() => {
+    if (poolAddress && tokens.length > 0) {
+      // Set tokens based on the pool address only after tokens are loaded
+      swapStore.setTokensForPool(poolAddress).then((poolTokenAddresses) => {
+        // Get the pool tokens addresses to filter the selection dropdown
+        if (poolTokenAddresses && poolTokenAddresses.length > 0) {
+          setPoolTokensAddresses(poolTokenAddresses);
+        } else if (swapStore.poolData) {
+          setPoolTokensAddresses(swapStore.poolData.tokens);
+        }
+        setIsPoolTokensLoaded(true);
+      });
+    } else {
+      setIsPoolTokensLoaded(true);
+      setPoolTokensAddresses([]); // Reset for general swap
+    }
+  }, [poolAddress, tokens, swapStore]);
+
+  // If we're in a pool-specific context, wait until tokens are loaded
+  if (poolAddress && !isPoolTokensLoaded) {
+    return (
+      <Root>
+        <Text type="H">Loading pool tokens...</Text>
+      </Root>
+    );
+  }
 
   const sellTokenBalance = new BN(balanceStore.balances[swapStore.sellToken.assetId]?.balance ?? 0);
   const buyTokenBalance = new BN(balanceStore.balances[swapStore.buyToken.assetId]?.balance ?? 0);
@@ -95,7 +131,17 @@ export const SwapScreen: React.FC = observer(() => {
   const dataOnboardingSwapKey = `swap-${media.mobile ? "mobile" : "desktop"}`;
 
   const generateBalanceData = (assets: Token[]): AssetBlockData[] => {
-    return accountStore.formattedBalanceInfoList.filter((el) => assets.some((item) => item.assetId === el.assetId));
+    if (poolAddress && poolTokensAddresses.length > 0) {
+      // If we're in a pool-specific context, only show tokens that are part of this pool
+      return accountStore.formattedBalanceInfoList.filter(
+        (el) =>
+          assets.some((item) => item.assetId === el.assetId) &&
+          poolTokensAddresses.some((token) => token.toLowerCase() === el.asset.address?.toLowerCase()),
+      );
+    } else {
+      // For general swap, show all available tokens
+      return accountStore.formattedBalanceInfoList.filter((el) => assets.some((item) => item.assetId === el.assetId));
+    }
   };
 
   const onPayAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {

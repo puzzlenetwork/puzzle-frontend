@@ -466,6 +466,85 @@ class SwapStore {
   //   }
   // }
 
+  // Method to set tokens based on pool address
+  async setTokensForPool(poolAddress: string) {
+    try {
+      // Get the pool details to identify the tokens in the pool
+      const poolDetails = await import("../services/PoolDetailsService").then((m) => m.PoolDetailsService);
+      const details = await poolDetails.fetchPoolDetails(poolAddress);
+
+      if (details.tokens.length >= 2) {
+        // Find the first two tokens in the pool from our available tokens
+        // Use the account store's tokens which have logos to ensure we get the full token info
+        const accountStoreTokens = this.rootStore.accountStore.tokens;
+
+        const firstToken = accountStoreTokens.find(
+          (token) => token.address?.toLowerCase() === details.tokens[0].address.toLowerCase(),
+        );
+        const secondToken = accountStoreTokens.find(
+          (token) => token.address?.toLowerCase() === details.tokens[1].address.toLowerCase(),
+        );
+
+        if (firstToken && secondToken) {
+          // Ensure we're updating the tokens in the correct order
+          this.sellToken = firstToken;
+          this.buyToken = secondToken;
+
+          // Update pay amount to trigger quote calculation with new tokens
+          this.setPayAmount("100");
+
+          // Fetch pool data for the new token pair
+          await this.fetchPoolData();
+        } else {
+          console.warn("Could not find matching tokens for pool:", poolAddress);
+          console.log(
+            "Available tokens:",
+            accountStoreTokens.map((t) => t.symbol),
+          );
+          console.log(
+            "Pool tokens:",
+            details.tokens.map((t) => t.symbol),
+          );
+
+          // As a fallback, try to create tokens based on pool details
+          // This is important to ensure we have tokens with proper information
+          const tokensBySymbol = this.rootStore.accountStore.tokensBySymbol;
+
+          // Try to match by symbol if address matching failed
+          const firstTokenBySymbol = details.tokens[0]
+            ? tokensBySymbol[details.tokens[0].symbol as keyof typeof tokensBySymbol] ||
+              Object.values(tokensBySymbol).find(
+                (token: any) => token.symbol.toLowerCase() === details.tokens[0].symbol.toLowerCase(),
+              )
+            : null;
+
+          const secondTokenBySymbol = details.tokens[1]
+            ? tokensBySymbol[details.tokens[1].symbol as keyof typeof tokensBySymbol] ||
+              Object.values(tokensBySymbol).find(
+                (token: any) => token.symbol.toLowerCase() === details.tokens[1].symbol.toLowerCase(),
+              )
+            : null;
+
+          if (firstTokenBySymbol && secondTokenBySymbol) {
+            this.sellToken = firstTokenBySymbol;
+            this.buyToken = secondTokenBySymbol;
+            this.setPayAmount("100");
+            await this.fetchPoolData();
+          }
+        }
+
+        // Return the pool token addresses for use in the UI
+        return details.tokens.map((token) => token.address);
+      } else {
+        console.warn("Pool has less than 2 tokens:", details.tokens.length);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error setting tokens for pool:", error);
+      return [];
+    }
+  }
+
   get assetsWithLeverage() {
     // const withLeverage = this.assets.map(({ balance, factBalance, ...rest }) => ({
     //   ...rest,

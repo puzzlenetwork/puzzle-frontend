@@ -113,6 +113,12 @@ export const PoolDetailsPage: React.FC = observer(() => {
           </div>
         </Row>
 
+        <Row justifyContent="center" style={{ marginBottom: "20px" }}>
+          <Button style={{ padding: "12px 24px", width: "auto" }} onClick={() => navigate(`/pool/${poolAddress}/swap`)}>
+            Swap in this Pool
+          </Button>
+        </Row>
+
         <InfoSection>
           <Text style={{ marginBottom: "12px", textTransform: "uppercase" }} type="BUTTON">
             Pool Information

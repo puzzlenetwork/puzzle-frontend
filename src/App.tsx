@@ -27,6 +27,7 @@ const App: React.FC = observer(() => {
       <Header />
       <Routes>
         <Route element={<SwapScreen />} path="/" />
+        <Route element={<SwapScreen />} path="/pool/:poolAddress/swap" />
         <Route element={<PoolList />} path="/pools" />
         <Route element={<PoolDetailsPage />} path="/pool/:poolAddress" />
       </Routes>
