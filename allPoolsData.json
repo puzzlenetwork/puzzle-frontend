@@ -8,15 +8,15 @@
     "totalSupply": "52871546179335305",
     "tokens": [
       {
-        "address": "Unknown Token 1",
-        "name": "Unknown Token 1",
-        "symbol": "TKN1",
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 2",
-        "name": "Unknown Token 2",
-        "symbol": "TKN2",
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
         "decimals": 18
       }
     ]
@@ -30,21 +30,21 @@
     "totalSupply": "0",
     "tokens": [
       {
-        "address": "Unknown Token 1",
-        "name": "Unknown Token 1",
-        "symbol": "TKN1",
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 2",
-        "name": "Unknown Token 2",
-        "symbol": "TKN2",
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 3",
-        "name": "Unknown Token 3",
-        "symbol": "TKN3",
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
         "decimals": 18
       }
     ]
@@ -58,21 +58,21 @@
     "totalSupply": "0",
     "tokens": [
       {
-        "address": "Unknown Token 1",
-        "name": "Unknown Token 1",
-        "symbol": "TKN1",
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 2",
-        "name": "Unknown Token 2",
-        "symbol": "TKN2",
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 3",
-        "name": "Unknown Token 3",
-        "symbol": "TKN3",
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
         "decimals": 18
       }
     ]
@@ -86,21 +86,21 @@
     "totalSupply": "605999999999981814546",
     "tokens": [
       {
-        "address": "Unknown Token 1",
-        "name": "Unknown Token 1",
-        "symbol": "TKN1",
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 2",
-        "name": "Unknown Token 2",
-        "symbol": "TKN2",
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 3",
-        "name": "Unknown Token 3",
-        "symbol": "TKN3",
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
         "decimals": 18
       }
     ]
@@ -114,21 +114,21 @@
     "totalSupply": "605999999999981814546",
     "tokens": [
       {
-        "address": "Unknown Token 1",
-        "name": "Unknown Token 1",
-        "symbol": "TKN1",
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 2",
-        "name": "Unknown Token 2",
-        "symbol": "TKN2",
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 3",
-        "name": "Unknown Token 3",
-        "symbol": "TKN3",
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
         "decimals": 18
       }
     ]
@@ -142,15 +142,15 @@
     "totalSupply": "0",
     "tokens": [
       {
-        "address": "Unknown Token 1",
-        "name": "Unknown Token 1",
-        "symbol": "TKN1",
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
         "decimals": 18
       },
       {
-        "address": "Unknown Token 2",
-        "name": "Unknown Token 2",
-        "symbol": "TKN2",
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
         "decimals": 18
       }
     ]

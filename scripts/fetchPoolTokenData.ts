@@ -80,71 +80,47 @@ class PoolTokenDataFetcher {
   }
 
  private async fetchTokensFromPool(poolAddress: string): Promise<TokenInfo[]> {
-    try {
-      // Try to get tokens from the pool directly
-      // First, attempt to get the tokens array if available in the ABI
-      const tokens: TokenInfo[] = [];
-      
-      // Try to get tokens using getNormalizedWeights and other methods
-      try {
-        const normalizedWeights: bigint[] = await this.publicClient.readContract({
-          address: poolAddress as `0x${string}`,
-          abi: RANGE_POOL_ABI,
-          functionName: 'getNormalizedWeights',
-        });
-        // We fetch rateProviders but don't use it in the current implementation
-        // const rateProviders: string[] = await this.publicClient.readContract({
-        //   address: poolAddress as `0x${string}`,
-        //   abi: RANGE_POOL_ABI,
-        //   functionName: 'getRateProviders',
-        // });
-        
-        // If we have normalized weights, we can potentially get token information
-        if (normalizedWeights.length > 0) {
-          // For each weight, we'll need to determine the corresponding token
-          // This may require additional calls or may not be directly available in this ABI
-          for (let i = 0; i < normalizedWeights.length; i++) {
-            // Since we can't directly get token addresses from this ABI,
-            // we'll need to use an alternative approach or assume we need
-            // to get this information from the transaction data
-            tokens.push({
-              address: `Unknown Token ${i+1}`,
-              name: `Unknown Token ${i+1}`,
-              symbol: `TKN${i+1}`,
-              decimals: 18,
-            });
-          }
-        }
-      } catch (e) {
-        console.log(`Could not fetch normalized weights for pool ${poolAddress}:`, e);
-      }
-
-      // If we still don't have tokens, try other methods
-      if (tokens.length === 0) {
-        // Some pools might have specific functions to get token addresses
-        // This varies by implementation, so we'll add common methods here
-        try {
-          // Attempt to call a function that might return token addresses
-          // This is implementation-specific and may not exist in this ABI
-          // We fetch poolId but don't use it in the current implementation
-          // const poolId = await this.publicClient.readContract({
-          //   address: poolAddress as `0x${string}`,
-          //   abi: RANGE_POOL_ABI,
-          //   functionName: 'getPoolId',
-          // });
-          // Note: In a real Balancer-style pool, we'd use the vault to get tokens
-          // But this would require the vault address and additional setup
-        } catch (e) {
-          console.log(`Could not fetch pool ID for ${poolAddress}:`, e);
-        }
-      }
-
-      return tokens;
-    } catch (error) {
-      console.error(`Error fetching tokens for pool ${poolAddress}:`, error);
-      return [];
-    }
-  }
+     try {
+       // Try to get tokens from the pool directly
+       // First, attempt to get the tokens array if available in the ABI
+       const tokens: TokenInfo[] = [];
+       
+       // Try to get tokens using getNormalizedWeights and other methods
+       try {
+         const normalizedWeights: bigint[] = await this.publicClient.readContract({
+           address: poolAddress as `0x${string}`,
+           abi: RANGE_POOL_ABI,
+           functionName: 'getNormalizedWeights',
+         });
+         
+         // For Range Pools, we might need to get the actual tokens differently
+         // Let's try to get the tokens through other methods available in the ABI
+         // If we have normalized weights, we can potentially derive token information
+         
+         // If we have normalized weights, we can potentially derive token information
+         if (normalizedWeights.length > 0) {
+           // For each weight, we'll need to determine the corresponding token
+           // Since we can't directly get token addresses from this ABI,
+           // we'll need to look up the creation transaction to get the original tokens
+           for (let i = 0; i < normalizedWeights.length; i++) {
+             tokens.push({
+               address: `Unknown Token ${i+1}`,
+               name: `Unknown Token ${i+1}`,
+               symbol: `TKN${i+1}`,
+               decimals: 18,
+             });
+           }
+         }
+       } catch (e) {
+         console.log(`Could not fetch normalized weights for pool ${poolAddress}:`, e);
+       }
+ 
+       return tokens;
+     } catch (error) {
+       console.error(`Error fetching tokens for pool ${poolAddress}:`, error);
+       return [];
+     }
+   }
 
   async fetchMultiplePoolTokenData(poolAddresses: string[]): Promise<PoolTokenData[]> {
     // Fetch details for multiple pools concurrently, but with a limit to avoid overwhelming the RPC
