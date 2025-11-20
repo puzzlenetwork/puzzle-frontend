@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react";
 
@@ -31,6 +32,7 @@ export const PoolList: React.FC = observer(() => {
   const [poolDetails, setPoolDetails] = useState<Record<string, PoolDetails>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPools = async () => {
@@ -151,7 +153,14 @@ export const PoolList: React.FC = observer(() => {
               return (
                 <TableRow key={index}>
                   <TableCell>
-                    <Text nowrap={true} primary={true} type="BODY">
+                    <Text
+                      nowrap={true}
+                      pointer={true}
+                      primary={true}
+                      style={{ cursor: "pointer", textDecoration: "underline" }}
+                      type="BODY"
+                      onClick={() => navigate(`/pool/${pool.poolAddress}`)}
+                    >
                       {shortenAddress(pool.poolAddress)}
                     </Text>
                   </TableCell>
@@ -159,7 +168,9 @@ export const PoolList: React.FC = observer(() => {
                     <Text nowrap={true} primary={true} type="BODY">
                       {pool.tokens && pool.tokens.length > 0
                         ? pool.tokens.map((token) => token.symbol).join(", ")
-                        : "Loading..."}
+                        : details && details.tokens && details.tokens.length > 0
+                          ? details.tokens.map((token) => token.symbol).join(", ")
+                          : "Loading..."}
                     </Text>
                   </TableCell>
                   <TableCell>

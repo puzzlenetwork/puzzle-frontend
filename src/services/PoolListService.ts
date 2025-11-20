@@ -71,6 +71,7 @@ export interface PoolData {
   symbol: string;
   totalSupply: string;
   tokens: TokenInfo[];
+  transactions?: any[];
 }
 
 export interface TokenInfo {

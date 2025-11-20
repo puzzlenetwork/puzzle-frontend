@@ -4,16 +4,36 @@ import { getContract } from "viem";
 import { wagmiConfig } from "@constants/wagmiConfig";
 
 import { RANGE_POOL_ABI } from "../abi/rangePoolABI";
+import { ERC20_ABI, VAULT_ABI } from "../abi/vaultPoolTokensABI";
 
 export interface PoolDetails {
   address: string;
-  token0: string;
-  token1: string;
+  tokens: {
+    address: string;
+    name: string;
+    symbol: string;
+    decimals: number;
+  }[];
   feeTier: string;
   currentPrice: string;
   name: string;
   symbol: string;
   totalSupply: string;
+  actualSupply: string;
+  totalLiquidity: string;
+  swapFeePercentage: string;
+  normalizedWeights: string[];
+  scalingFactors: string[];
+  virtualBalances: string[];
+  invariant: string;
+  lastPostJoinExitInvariant: string;
+  poolId: string;
+  owner: string;
+  vault: string;
+  paused: boolean;
+  inRecoveryMode: boolean;
+  ATHRateProduct: string;
+  transactions: any[]; // Array to hold pool transaction history
 }
 
 export class PoolDetailsService {
@@ -30,60 +50,198 @@ export class PoolDetailsService {
         client: publicClient,
       });
 
-      // Fetch basic pool information
-      const [name, symbol, totalSupply, swapFeePercentage, normalizedWeights] = await Promise.all([
+      // Fetch all pool information concurrently
+      const [
+        name,
+        symbol,
+        totalSupply,
+        actualSupply,
+        swapFeePercentage,
+        normalizedWeights,
+        scalingFactors,
+        virtualBalances,
+        invariant,
+        lastPostJoinExitInvariant,
+        poolId,
+        owner,
+        vault,
+        pausedState,
+        inRecoveryMode,
+        ATHRateProduct,
+      ] = await Promise.all([
         contract.read.name().catch(() => "Unknown"),
         contract.read.symbol().catch(() => "Unknown"),
         contract.read.totalSupply().catch(() => "0"),
+        contract.read.getActualSupply().catch(() => "0"),
         contract.read.getSwapFeePercentage().catch(() => "0"),
         contract.read.getNormalizedWeights().catch(() => []),
+        contract.read.getScalingFactors().catch(() => []),
+        contract.read.getVirtualBalances().catch(() => []),
+        contract.read.getInvariant().catch(() => "0"),
+        contract.read.getLastPostJoinExitInvariant().catch(() => "0"),
+        contract.read.getPoolId().catch(() => "0x0"),
+        contract.read.getOwner().catch(() => "0x0"),
+        contract.read.getVault().catch(() => "0x0"),
+        contract.read.getPausedState().catch(() => ({ paused: false })),
+        contract.read.inRecoveryMode().catch(() => false),
+        contract.read.getATHRateProduct().catch(() => "0"),
       ]);
 
-      // Extract token information from normalized weights
-      // In a weighted pool, the normalized weights represent the relative weights of tokens
-      // For a 2-token pool, we typically have 2 weights
-      let token0 = "Unknown";
-      let token1 = "Unknown";
+      // Get tokens from the pool data service to match what's in the JSON
+      let tokens: {
+        address: string;
+        name: string;
+        symbol: string;
+        decimals: number;
+      }[] = [];
 
-      if (Array.isArray(normalizedWeights) && normalizedWeights.length >= 2) {
-        // For this implementation, we'll use the normalized weights to represent token info
-        // In a real implementation, we might need to get actual token addresses
-        token0 = `Token0 (${(normalizedWeights[0] as bigint)?.toString() || "N/A"})`;
-        token1 = `Token1 (${(normalizedWeights[1] as bigint)?.toString() || "N/A"})`;
-      } else {
-        // Default values if we can't get normalized weights
-        token0 = "Token0";
-        token1 = "Token1";
+      // First, try to get tokens from the pool data service to match the JSON file
+      try {
+        const poolListService = await import("../services/PoolListService").then((m) => m.default);
+        const poolData = await poolListService.getPoolByAddress(poolAddress);
+
+        if (poolData && poolData.tokens) {
+          // Use tokens from the JSON data
+          tokens = poolData.tokens.map((token) => ({
+            address: token.address,
+            name: token.name,
+            symbol: token.symbol,
+            decimals: token.decimals,
+          }));
+        } else {
+          // Fallback: get tokens from the vault
+          if (vault && vault !== "0x0") {
+            const vaultContract = getContract({
+              address: vault as `0x${string}`,
+              abi: VAULT_ABI,
+              client: publicClient,
+            });
+
+            const poolTokens = (await vaultContract.read.getPoolTokens([poolId as `0x${string}`])) as [
+              string[],
+              bigint[],
+              bigint,
+            ];
+            const vaultTokens = poolTokens[0];
+
+            for (const tokenAddress of vaultTokens) {
+              const tokenContract = getContract({
+                address: tokenAddress as `0x${string}`,
+                abi: ERC20_ABI,
+                client: publicClient,
+              });
+
+              try {
+                const [name, symbol, decimals] = await Promise.all([
+                  tokenContract.read.name().catch(() => "Unknown"),
+                  tokenContract.read.symbol().catch(() => "Unknown"),
+                  tokenContract.read.decimals().catch(() => 18),
+                ]);
+
+                tokens.push({
+                  address: tokenAddress,
+                  name: name as string,
+                  symbol: symbol as string,
+                  decimals: Number(decimals),
+                });
+              } catch (e) {
+                console.error("Error fetching token details:", e);
+                tokens.push({
+                  address: tokenAddress,
+                  name: "Unknown",
+                  symbol: "Unknown",
+                  decimals: 18,
+                });
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Error fetching pool tokens:", e);
+      }
+
+      // Initialize transactions array - get from the pool data service
+      let transactions: any[] = [];
+
+      // Get transactions from the pool data service
+      try {
+        const poolListService = await import("../services/PoolListService").then((m) => m.default);
+        const poolData = await poolListService.getPoolByAddress(poolAddress);
+
+        if (poolData && poolData.transactions) {
+          transactions = poolData.transactions;
+        }
+      } catch (e) {
+        console.error("Error fetching pool transactions:", e);
+        transactions = [];
       }
 
       // Calculate fee tier as percentage (swap fee percentage is typically in basis points)
-      const feeTier = `${Number(swapFeePercentage) / 1000000}%`; // Convert from basis points or other unit
+      const feeTier = `${Number(swapFeePercentage) / 10000000}%`; // Convert from basis points or other unit
 
       // For current price, we would typically calculate from reserves or other data
-      // For now, we'll provide a placeholder
+      // For now, we'll provide a placeholder - this would need to be calculated from actual reserves
       const currentPrice = "N/A";
+
+      // Calculate total liquidity (this would be based on actual token reserves)
+      const totalLiquidity = "N/A";
 
       return {
         address: poolAddress,
-        token0,
-        token1,
+        tokens,
         feeTier,
         currentPrice,
         name: name as string,
         symbol: symbol as string,
         totalSupply: (totalSupply as bigint).toString(),
+        actualSupply: (actualSupply as bigint).toString(),
+        totalLiquidity,
+        swapFeePercentage: (swapFeePercentage as bigint).toString(),
+        normalizedWeights: (normalizedWeights as bigint[]).map((w) => w.toString()),
+        scalingFactors: (scalingFactors as bigint[]).map((sf) => sf.toString()),
+        virtualBalances: (virtualBalances as bigint[]).map((vb) => vb.toString()),
+        invariant: (invariant as bigint).toString(),
+        lastPostJoinExitInvariant: (lastPostJoinExitInvariant as bigint).toString(),
+        poolId: poolId as string,
+        owner: owner as string,
+        vault: vault as string,
+        paused: (pausedState as any).paused || false,
+        inRecoveryMode: inRecoveryMode as boolean,
+        ATHRateProduct: (ATHRateProduct as bigint).toString(),
+        transactions,
       };
     } catch (error) {
       console.error(`Error fetching details for pool ${poolAddress}:`, error);
       return {
         address: poolAddress,
-        token0: "Error",
-        token1: "Error",
+        tokens: [
+          {
+            address: "Error",
+            name: "Error",
+            symbol: "Error",
+            decimals: 0,
+          },
+        ],
         feeTier: "Error",
         currentPrice: "Error",
         name: "Error",
         symbol: "Error",
         totalSupply: "Error",
+        actualSupply: "Error",
+        totalLiquidity: "Error",
+        swapFeePercentage: "Error",
+        normalizedWeights: [],
+        scalingFactors: [],
+        virtualBalances: [],
+        invariant: "Error",
+        lastPostJoinExitInvariant: "Error",
+        poolId: "Error",
+        owner: "Error",
+        vault: "Error",
+        paused: false,
+        inRecoveryMode: false,
+        ATHRateProduct: "Error",
+        transactions: [],
       };
     }
   }
