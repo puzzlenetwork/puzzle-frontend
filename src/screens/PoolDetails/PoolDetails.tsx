@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 
 import Button from "@components/Button";
 import { Column, Row } from "@components/Flex";
+import { LiquidityControls } from "@components/LiquidityControls";
 import Text from "@components/Text";
 import { media } from "@themes/breakpoints";
 
@@ -301,6 +302,8 @@ export const PoolDetailsPage: React.FC = observer(() => {
           )}
         </InfoSection>
       </PoolInfoCard>
+
+      <LiquidityControls poolAddress={poolDetails.address} poolId={poolDetails.poolId} tokens={poolDetails.tokens} />
     </PoolDetailsContainer>
   );
 });
