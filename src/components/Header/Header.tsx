@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { observer } from "mobx-react";
@@ -45,6 +46,9 @@ const Header: React.FC = observer(() => {
           <a href="/" rel="noreferrer noopener">
             <LogoStyled />
           </a>
+          <Link style={{ textDecoration: "none", marginLeft: "12px" }} to="/pools">
+            <PoolsLink>Pool List</PoolsLink>
+          </Link>
         </SmartFlex>
         <SmartFlex center="y" gap="8px">
           {renderWallet()}
@@ -61,6 +65,9 @@ const Header: React.FC = observer(() => {
             <LogoStyled />
           </a>
           <Divider />
+          <Link style={{ textDecoration: "none" }} to="/pools">
+            <PoolsLink>Pool List</PoolsLink>
+          </Link>
         </SmartFlex>
         <SmartFlex center="y" gap="16px">
           {renderWallet()}
@@ -114,5 +121,25 @@ const LogoStyled = styled(Logo)`
   ${media.mobile} {
     width: 100px;
     height: 32px;
+  }
+`;
+
+const PoolsLink = styled.div`
+  color: ${({ theme }) => theme.colors.textPrimary};
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bgSecondary};
+  }
+
+  ${media.mobile} {
+    font-size: 14px;
+    padding: 6px 8px;
   }
 `;
