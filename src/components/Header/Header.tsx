@@ -49,6 +49,9 @@ const Header: React.FC = observer(() => {
           <Link style={{ textDecoration: "none", marginLeft: "12px" }} to="/pools">
             <PoolsLink>Pool List</PoolsLink>
           </Link>
+          <Link style={{ textDecoration: "none", marginLeft: "12px" }} to="/create-pool">
+            <PoolsLink>Create Pool</PoolsLink>
+          </Link>
         </SmartFlex>
         <SmartFlex center="y" gap="8px">
           {renderWallet()}
@@ -67,6 +70,9 @@ const Header: React.FC = observer(() => {
           <Divider />
           <Link style={{ textDecoration: "none" }} to="/pools">
             <PoolsLink>Pool List</PoolsLink>
+          </Link>
+          <Link style={{ textDecoration: "none" }} to="/create-pool">
+            <PoolsLink>Create Pool</PoolsLink>
           </Link>
         </SmartFlex>
         <SmartFlex center="y" gap="16px">

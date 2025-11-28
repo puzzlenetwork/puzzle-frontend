@@ -10,6 +10,7 @@ import { PoolList } from "@components/PoolList/PoolList";
 import { useClearUrlParam } from "@hooks/useClearUrlParam";
 
 import { Footer } from "@screens/Footer";
+import { PoolCreationPage } from "@screens/PoolCreation";
 import { PoolDetailsPage } from "@screens/PoolDetails";
 import { SwapScreen } from "@screens/SwapScreen";
 
@@ -30,6 +31,7 @@ const App: React.FC = observer(() => {
         <Route element={<SwapScreen />} path="/pool/:poolAddress/swap" />
         <Route element={<PoolList />} path="/pools" />
         <Route element={<PoolDetailsPage />} path="/pool/:poolAddress" />
+        <Route element={<PoolCreationPage />} path="/create-pool" />
       </Routes>
       <Footer />
     </Root>

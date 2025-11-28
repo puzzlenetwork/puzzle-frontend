@@ -22,51 +22,51 @@
     ],
     "transactions": [
       {
-        "hash": "0x4fyiyijmutnu107bdfz9votl5ednasfdo76cxhpzigpe",
-        "type": "swap",
-        "amount": "871.110349",
-        "timestamp": "2025-11-20T19:47:05.215Z",
-        "from": "0xcfd01a53fd485817",
-        "to": "0xcab25bf0bd7d4f15"
-      },
-      {
-        "hash": "0xzb0ahktfwuuvcv7aifqco8mau7676gmwyytwaif2e9s",
+        "hash": "0x6t6xnflkzh6iinc3eku8q12gjk3jqbfpaphvjxai3g4",
         "type": "join",
-        "amount": "565.007130",
-        "timestamp": "2025-11-20T18:31:25.577Z",
-        "from": "0x7eeaa087f1c77e45",
-        "to": "0x2e02eb42b74630d1"
+        "amount": "561.439662",
+        "timestamp": "2025-11-25T17:41:38.149Z",
+        "from": "0x1c451d66f4d67590",
+        "to": "0xb1ae4cb25bdf083d"
       },
       {
-        "hash": "0xgq0sneg3iimgrghsrp39rdt7gap6l14f8hnj0x9habpj",
-        "type": "join",
-        "amount": "209.920231",
-        "timestamp": "2025-11-20T18:32:47.595Z",
-        "from": "0x10398d1c4b8db5e0",
-        "to": "0x0f001ca937b542e6"
-      },
-      {
-        "hash": "0xsbsqmuq3edj3e526k9k4ge2yuvsn9in4c7d7ryvapln",
+        "hash": "0xnhob33hrs08xtptzqivi2bwn4ovcubzoofj121igzv7e",
         "type": "swap",
-        "amount": "258.548670",
-        "timestamp": "2025-11-20T18:32:35.257Z",
-        "from": "0xf1846a302015d6f4",
-        "to": "0xc4dd1e2a6cfc2110"
+        "amount": "800.827777",
+        "timestamp": "2025-11-25T16:20:35.243Z",
+        "from": "0xd51f410a37ef42ff",
+        "to": "0xb494b8ac5dedadbd"
       },
       {
-        "hash": "0xzhcozvcl0e8vpe2yls1lzel3gv1mln6ghwejzwf8folg",
+        "hash": "0x2ddt62m4fo9m53vysw8qjnrnys2a69fijobqqabii9",
+        "type": "join",
+        "amount": "423.970497",
+        "timestamp": "2025-11-25T17:15:15.133Z",
+        "from": "0x29476019b6dcfbad",
+        "to": "0x76cdd3d23a1941f4"
+      },
+      {
+        "hash": "0xap2qbvjionse9g5qt2o7tzamo2wmyqgo3g4dxrmw8rn",
+        "type": "swap",
+        "amount": "430.495566",
+        "timestamp": "2025-11-25T15:38:16.987Z",
+        "from": "0x62414fa465d7a9b3",
+        "to": "0x990ebb3d7359bf1f"
+      },
+      {
+        "hash": "0x1zm9njyaritg8w148f10z85mrsgpwln0nughev3f42rr",
         "type": "exit",
-        "amount": "3.776126",
-        "timestamp": "2025-11-20T18:31:19.423Z",
-        "from": "0x8d82a241bad8a935",
-        "to": "0x90bcaf4fdf7187ea"
+        "amount": "8.939498",
+        "timestamp": "2025-11-25T15:52:28.226Z",
+        "from": "0x9f4fc4aae844937e",
+        "to": "0x0445e2e6539e0b7f"
       }
     ]
   },
   {
     "poolAddress": "0x0268eB8E2Bc62863C3936278c8DDB80Cc2F7FB28",
     "blockNumber": 9189901,
-    "transactionHash": "0x36fe14ca5e588fd6b00729a4a95111302851a605911f516cdddef0abff06ac",
+    "transactionHash": "0x36fe14ca5e588fd6b00729a4a951113028551a6005911f516cdddef0abff06ac",
     "name": "VLD/LID/VOV",
     "symbol": "VLV",
     "totalSupply": "0",
@@ -92,44 +92,44 @@
     ],
     "transactions": [
       {
-        "hash": "0xcptaeka8k6fmqu8tdavxegyos5vl1hv9xbxk0k4xil",
-        "type": "join",
-        "amount": "811.964792",
-        "timestamp": "2025-11-20T19:01:44.984Z",
-        "from": "0x32b49b04320deaff",
-        "to": "0xbf8409487f1e57f2"
+        "hash": "0xvgctp0oit7ch4z0d9vbmcpjbln00p4yajdk9ywgdph",
+        "type": "exit",
+        "amount": "903.163087",
+        "timestamp": "2025-11-25T17:21:44.130Z",
+        "from": "0xf689485df91ae461",
+        "to": "0x13332ece5c483b2e"
       },
       {
-        "hash": "0xcvbg6dpvjhl744x0tukllb4oplgw21zqs3re55pk0yq",
-        "type": "join",
-        "amount": "431.836951",
-        "timestamp": "2025-11-20T20:02:46.020Z",
-        "from": "0xb6f9c9f276806dc2",
-        "to": "0x3768d1ee1a480b7"
+        "hash": "0x9i962y25lcumfbibx8e9d462ipnhrbf6pe9j1rlbru",
+        "type": "exit",
+        "amount": "846.294575",
+        "timestamp": "2025-11-25T16:54:02.273Z",
+        "from": "0x1267bf461667e2db",
+        "to": "0x40784088c57d7b26"
       },
       {
-        "hash": "0x80dpjwutpipryi5smidhivxi5aa3qvndrbw2k8ju5z",
+        "hash": "0xcxjwxri00fquism6qm9t394qu4n7k5e7e5s7vy4ro7w",
+        "type": "exit",
+        "amount": "29.859574",
+        "timestamp": "2025-11-25T16:23:28.438Z",
+        "from": "0x4a19abaaa12dd6e7",
+        "to": "0x550a1d7c6f525936"
+      },
+      {
+        "hash": "0x2z72cvp33z3nhs1a1t7g6p41800z0o695nrok2atn6m",
         "type": "swap",
-        "amount": "50.016305",
-        "timestamp": "2025-11-20T19:56:20.901Z",
-        "from": "0x25ff8c048c859104",
-        "to": "0x464587def8214e65"
+        "amount": "644.629747",
+        "timestamp": "2025-11-25T17:38:51.938Z",
+        "from": "0x6f0f65de08885885",
+        "to": "0x03f6aac8b174fb74"
       },
       {
-        "hash": "0xtnocv7wr9hnqcv48vocouabfek7eyb16wo7dgrm2kdnp",
+        "hash": "0xrw2fj15636uzv7iy5fvk6qy8kjbf5s7669r9olvfgw",
         "type": "swap",
-        "amount": "586.946895",
-        "timestamp": "2025-11-20T19:58:41.181Z",
-        "from": "0x18a38152b9f8850d",
-        "to": "0x59ab57f1ec3fbc18"
-      },
-      {
-        "hash": "0xz5rvu630ssr0zcvkipv19xe2zvy28qfbvfm2i0qt9z",
-        "type": "swap",
-        "amount": "973.769760",
-        "timestamp": "2025-11-20T19:32:02.091Z",
-        "from": "0x25722b1945761a61",
-        "to": "0xeca855192bf8cd04"
+        "amount": "934.435477",
+        "timestamp": "2025-11-25T15:54:35.891Z",
+        "from": "0x110c5c769913309a",
+        "to": "0x623c19d4d3536a50"
       }
     ]
   },
@@ -148,7 +148,7 @@
         "decimals": 18
       },
       {
-        "address": "0xAA6ef6F4752c2fb4e8CF8F83Ca98E56A8715bed",
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
         "name": "Vlad Token",
         "symbol": "VLD",
         "decimals": 18
@@ -162,44 +162,44 @@
     ],
     "transactions": [
       {
-        "hash": "0x6ub4wanbc0a4iu9hgb8htm4vedtq3rssfbescxbfkggl",
+        "hash": "0xbaochflyxz888xy79w6xe825en0yys9rrxfl0ojhpqw",
         "type": "join",
-        "amount": "331.271071",
-        "timestamp": "2025-11-20T17:38:01.703Z",
-        "from": "0x74593fbe065ba71b",
-        "to": "0xf28ce50124c23da0"
+        "amount": "786.064645",
+        "timestamp": "2025-11-25T16:15:14.090Z",
+        "from": "0x47306a56d6df2469",
+        "to": "0x97d0760cddc29339"
       },
       {
-        "hash": "0x5vm6u05u1pmojnd9a9qlm5adw0pdwtbq0358wnt3m8h9",
+        "hash": "0xpgwpuv2ojzl40yhdd3hbh6n3l3w34huib5en51izngg",
         "type": "join",
-        "amount": "423.264776",
-        "timestamp": "2025-11-20T18:57:42.269Z",
-        "from": "0x1bf529ba7738e442",
-        "to": "0x89c395cad966b04f"
+        "amount": "313.718818",
+        "timestamp": "2025-11-25T16:24:37.588Z",
+        "from": "0x2d80886accf6cba5",
+        "to": "0x2e2f0f9ec6831c48"
       },
       {
-        "hash": "0xu4u1qb48oqj0vv8r19gozo191m8g7em5vfgimh37d2",
-        "type": "exit",
-        "amount": "482.486807",
-        "timestamp": "2025-11-20T20:23:43.888Z",
-        "from": "0x29511ca72db19a0b",
-        "to": "0x3d087073307db841"
-      },
-      {
-        "hash": "0x24gnz1vwgzckcd0n7txzft4aol677kzanyoieara6pm",
+        "hash": "0x6g8e7yixagwyakdsryaaf5k8taqvtymbki1shdiwhir",
         "type": "swap",
-        "amount": "496.229303",
-        "timestamp": "2025-11-20T18:34:30.311Z",
-        "from": "0x449a1726711ac53a",
-        "to": "0x78ec9a9aebc811c4"
+        "amount": "291.615246",
+        "timestamp": "2025-11-25T16:41:27.847Z",
+        "from": "0x56e27ac2a1441b15",
+        "to": "0xa1a90cac3013e661"
       },
       {
-        "hash": "0xha342z4p97n9rgalqtqkudyp6vsbziaa32ls456pxks",
-        "type": "join",
-        "amount": "124.921013",
-        "timestamp": "2025-11-20T18:23:01.419Z",
-        "from": "0xafa1c815542b7082",
-        "to": "0x952c80dde0dd7e43"
+        "hash": "0x9ayxyjw14micetz6vfk58jujgq3j2l0kdlazbgsb1ik",
+        "type": "exit",
+        "amount": "14.702073",
+        "timestamp": "2025-11-25T17:05:56.077Z",
+        "from": "0x24a9b4e1200f28a6",
+        "to": "0x738bc4eea44bfdef"
+      },
+      {
+        "hash": "0xwqidrc01fs9cvzpj79g5p9q8nr8s7rn5r6svdwe01war",
+        "type": "swap",
+        "amount": "388.831724",
+        "timestamp": "2025-11-25T15:43:57.528Z",
+        "from": "0x001ebd6c37ef4fc4",
+        "to": "0x2948503d41c91ebe"
       }
     ]
   },
@@ -209,7 +209,7 @@
     "transactionHash": "0x7bdecdefa6f9408724f28aacbaf9403382c080b36d3a0804c6e01821ca495eca",
     "name": "VLD/LID/VOV",
     "symbol": "VLV",
-    "totalSupply": "6059999999981814546",
+    "totalSupply": "605999999999981814546",
     "tokens": [
       {
         "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
@@ -232,44 +232,44 @@
     ],
     "transactions": [
       {
-        "hash": "0xdl18x40o3zabwtdw20xtablhc532d507ey4c2og14ku",
-        "type": "exit",
-        "amount": "312.815476",
-        "timestamp": "2025-11-20T19:45:41.734Z",
-        "from": "0x494c3e450c85c8fc",
-        "to": "0x765c126709de5ae6"
-      },
-      {
-        "hash": "0x3zorrtjwbmxks45kn8nbgom8cjpezq047vjl3tz0u5c",
-        "type": "join",
-        "amount": "237.963987",
-        "timestamp": "2025-11-20T19:54:16.972Z",
-        "from": "0x22bf2660ce596385",
-        "to": "0x77f5ef36c31c4ef5"
-      },
-      {
-        "hash": "0xgma8ou7yh19iummvlf9io4u3snq9apt884b0sn0km6",
-        "type": "join",
-        "amount": "956.323616",
-        "timestamp": "2025-11-20T18:41:21.608Z",
-        "from": "0x5e209069c13ad602",
-        "to": "0x8df93a25dfa16526"
-      },
-      {
-        "hash": "0xai0hxatf910dpkn91e132937qcn502g3a1cvc9bdx1uv",
+        "hash": "0xwrcdldaeph96eh2jy46t9v68vwsdm89yhjkoke18x",
         "type": "swap",
-        "amount": "901.054975",
-        "timestamp": "2025-11-20T18:54:15.445Z",
-        "from": "0x2d080482fb6662b9",
-        "to": "0x756f4346aa6e5448"
+        "amount": "477.696338",
+        "timestamp": "2025-11-25T18:02:53.814Z",
+        "from": "0x1768f2dae8efabff",
+        "to": "0x5553b755c3e370fc"
       },
       {
-        "hash": "0x5gihe2r7ur7q8d84ytxcfmzds9azo21lcvqzxf82zq9",
+        "hash": "0x6ywa30x5wgr9l2xgdt4pyleourgqlvqspcyrjkkuex7h",
         "type": "swap",
-        "amount": "203.960514",
-        "timestamp": "2025-11-20T17:51:13.932Z",
-        "from": "0x8d24c4a4b7561da2",
-        "to": "0xf2024390e75a6f44"
+        "amount": "473.322308",
+        "timestamp": "2025-11-25T17:20:33.693Z",
+        "from": "0x46cccafd35a1fa64",
+        "to": "0x9d51fddcd1211cf3"
+      },
+      {
+        "hash": "0x9bgrrnowft9tzuigedi4uo8rn7220ecjudn8c6hm1j",
+        "type": "join",
+        "amount": "11.462396",
+        "timestamp": "2025-11-25T15:27:10.590Z",
+        "from": "0xf566e631acb3b16d",
+        "to": "0xf87a1343dfe4fb16"
+      },
+      {
+        "hash": "0xmwcjfs66zqh7y9sldh6eglljnvgkxmlfc6i7psrzb",
+        "type": "swap",
+        "amount": "951.258410",
+        "timestamp": "2025-11-25T17:19:33.412Z",
+        "from": "0x506e9fc208530e35",
+        "to": "0x28b592e1eb2e3f97"
+      },
+      {
+        "hash": "0xx4zihnop0sey2186ucme8r5d0re6wpw8j6bffu0gxlmg",
+        "type": "join",
+        "amount": "275.138295",
+        "timestamp": "2025-11-25T16:06:32.805Z",
+        "from": "0x3867b5992f9ea14a",
+        "to": "0x7a80eadaba7903de"
       }
     ]
   },
@@ -279,7 +279,7 @@
     "transactionHash": "0x7c65633d0cecd6813319a2b44003261bf9b613acd088fca4c613b98c3414cf08",
     "name": "VLD/LID/VOV",
     "symbol": "VLV",
-    "totalSupply": "605999999981814546",
+    "totalSupply": "605999999999981814546",
     "tokens": [
       {
         "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
@@ -288,7 +288,7 @@
         "decimals": 18
       },
       {
-        "address": "0xAA6ef6F4752c2fb4e8CF8F83Ca98E56A8715bed",
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
         "name": "Vlad Token",
         "symbol": "VLD",
         "decimals": 18
@@ -302,51 +302,51 @@
     ],
     "transactions": [
       {
-        "hash": "0x801i1mpl165d773y6fv4u6e1x4bmkv1yhq28q28cn4u",
-        "type": "exit",
-        "amount": "5.751504",
-        "timestamp": "2025-11-20T19:03:06.091Z",
-        "from": "0x4235d67f7f262883",
-        "to": "0x590298c866620c80"
-      },
-      {
-        "hash": "0x4c40dg5s6tt6kqjdrr0hugs4iq17554rb6tu8rqrgh",
-        "type": "join",
-        "amount": "951.892828",
-        "timestamp": "2025-11-20T18:31:35.051Z",
-        "from": "0xc87e752d4482c443",
-        "to": "0x7a6e49ed94748355"
-      },
-      {
-        "hash": "0xz4m02s7reb93xu16c3xfzzsozx70l5c8loyt0asfgv",
-        "type": "join",
-        "amount": "949.739403",
-        "timestamp": "2025-11-20T18:49:25.598Z",
-        "from": "0x0ac400d079337dc4",
-        "to": "0xe89bc936ebfadcf4"
-      },
-      {
-        "hash": "0xjkpl4ao7p3cayuki7zwhmwuw4j7ebf8si6rp23zpbzs5",
-        "type": "join",
-        "amount": "567.932663",
-        "timestamp": "2025-11-20T18:20:04.533Z",
-        "from": "0xdfdbbfe3386466b1",
-        "to": "0x35740fa506b03217"
-      },
-      {
-        "hash": "0xfuzinyokchrps6xv6yrfmgd9gvshgas8vvxf6p58cft",
+        "hash": "0x8pfyh9fsmwmvam2zgukbsyvad3tf51jq5mgtrhqyn1f",
         "type": "swap",
-        "amount": "121.208374",
-        "timestamp": "2025-11-20T17:38:49.075Z",
-        "from": "0x3eb8f9bf97200caf",
-        "to": "0x0ce7814ad4b7da9e"
+        "amount": "381.777131",
+        "timestamp": "2025-11-25T15:51:44.545Z",
+        "from": "0x483d77c0bce42c7a",
+        "to": "0x105bc7c90731eb57"
+      },
+      {
+        "hash": "0xrl6kjomakbmmqrxw03f9gfrq87nwins4n3ty29hxzr",
+        "type": "swap",
+        "amount": "815.211498",
+        "timestamp": "2025-11-25T16:00:55.362Z",
+        "from": "0x2826ae87e26e12e2",
+        "to": "0x868a98992588c682"
+      },
+      {
+        "hash": "0xx1lshq2h4484cw9zbntsz5scwax7xjdnaqx9zaun37c",
+        "type": "exit",
+        "amount": "326.761263",
+        "timestamp": "2025-11-25T17:38:45.550Z",
+        "from": "0x2d02d4b7efb5fbcf",
+        "to": "0x150953af91dd32d6"
+      },
+      {
+        "hash": "0x62l4seeh8eh79k9j4nhq2bek0el0wq71pt572k3gqf3l",
+        "type": "exit",
+        "amount": "655.560143",
+        "timestamp": "2025-11-25T15:20:43.061Z",
+        "from": "0x2f65f4e377070b42",
+        "to": "0x138d14972ab8ac9c"
+      },
+      {
+        "hash": "0xb4n0k3aqjo93oeo2avmk5a6mve9f1685ejswct57ezr9",
+        "type": "exit",
+        "amount": "357.600328",
+        "timestamp": "2025-11-25T16:33:06.753Z",
+        "from": "0x06303baf66d389d5",
+        "to": "0xc195e1427ff453b1"
       }
     ]
   },
   {
     "poolAddress": "0x4BC1567b6dfc4bC71F8Ab807DFdCB6CdEb3d8B75",
     "blockNumber": 9197783,
-    "transactionHash": "0x3e51a17776d4816f208e0a5038b0700860faccc1ec3e0010f03db68b883cad6",
+    "transactionHash": "0x3e51a17776d4816f208e0a5038b0700860faccc1ec3e0010f03db68b8833cad6",
     "name": "LID/VOV",
     "symbol": "LDV",
     "totalSupply": "0",
@@ -366,44 +366,108 @@
     ],
     "transactions": [
       {
-        "hash": "0xf4131np6g0lbc97vu9wsnnfuglhl20eyi316xdhc8",
-        "type": "join",
-        "amount": "612.338282",
-        "timestamp": "2025-11-20T18:54:04.319Z",
-        "from": "0x09630e3ee4600ccf",
-        "to": "0xe91e920808977c0b"
-      },
-      {
-        "hash": "0x2yabk4fxtcdazl96z4sr2hqtoly15xozckgo5w0k8w5",
-        "type": "exit",
-        "amount": "164.764049",
-        "timestamp": "2025-11-20T19:10:10.575Z",
-        "from": "0x44768c384485fce5",
-        "to": "0xcaf71394680153cc"
-      },
-      {
-        "hash": "0xwkqs88987e9y6coilmvr4s5e8qdb3ntc37gflya50h4k",
-        "type": "join",
-        "amount": "85.642341",
-        "timestamp": "2025-11-20T20:00:31.671Z",
-        "from": "0x2bcb3035e67157d2",
-        "to": "0x22144bdfce6c1214"
-      },
-      {
-        "hash": "0x5tn7hb8n1xqq53xwyekbcbwyhdfmbs7860z5m66709",
-        "type": "exit",
-        "amount": "891.295021",
-        "timestamp": "2025-11-20T20:15:47.762Z",
-        "from": "0x30bdf3b3e60e99b7",
-        "to": "0x059391a6100cd7e7"
-      },
-      {
-        "hash": "0xwmyos56u2powc6femwwttsz2xi93nr5lqu0zrh4ody6h",
+        "hash": "0x81ozbcxxo4is85vy60mhij4xtba3sgkjwtyam0uk1gnj",
         "type": "swap",
-        "amount": "958.668810",
-        "timestamp": "2025-11-20T17:42:48.927Z",
-        "from": "0x9cecad23d001e169",
-        "to": "0x5213103d559f7daf"
+        "amount": "377.328228",
+        "timestamp": "2025-11-25T17:14:10.551Z",
+        "from": "0xfc05b5ace5d1bea6",
+        "to": "0xd634e39f5bb850d0"
+      },
+      {
+        "hash": "0x0h2uc6sdiraj7r9ud0se01855w4jccv4pdnoerxtg62a",
+        "type": "join",
+        "amount": "186.459975",
+        "timestamp": "2025-11-25T17:39:37.102Z",
+        "from": "0xf826a5e80c76a5af",
+        "to": "0x87412ce67e6bb3ea"
+      },
+      {
+        "hash": "0xuu82ry09lyrtqbailg682ovympoz7zpmm6e1dh57r03c",
+        "type": "swap",
+        "amount": "663.034368",
+        "timestamp": "2025-11-25T15:19:54.850Z",
+        "from": "0xc3185d2182d7ef77",
+        "to": "0xb909cff13540ae1d"
+      },
+      {
+        "hash": "0x5216ikfpw2gxagwtsfhnblim8y5cdexxth4q1pwh7k",
+        "type": "swap",
+        "amount": "292.179840",
+        "timestamp": "2025-11-25T17:15:53.215Z",
+        "from": "0xae01ab5903f977cb",
+        "to": "0xd5abf6f022fc7fe9"
+      },
+      {
+        "hash": "0xinnb02jngjoemf36ce6irw55unvsiahkfkokcmwqqo",
+        "type": "exit",
+        "amount": "557.889464",
+        "timestamp": "2025-11-25T16:28:25.593Z",
+        "from": "0xa9dc276c88de0b60",
+        "to": "0x568f16efdc0a3804"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0x2444f9d00128BEcC8ce136B8CBa6Feb39cc31A01",
+    "blockNumber": 9705327,
+    "transactionHash": "0x7f0d863a27d728357c8f8fa174b2d18527eaea21aaa6df8692d0e9a2a72d0cde",
+    "name": "VA",
+    "symbol": "VA",
+    "totalSupply": "0",
+    "tokens": [
+      {
+        "address": "0x0D44975485895292F9296065Cc17FfF2b3CBCBb3",
+        "name": "VOVA",
+        "symbol": "VVV",
+        "decimals": 18
+      },
+      {
+        "address": "0x82815E9C016BB47136b4FBA21541e3482acaa34a",
+        "name": "ALEX",
+        "symbol": "ALX",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0xyj415opnk59gqpkebtdyzxdrkjjb951fdcl1fnam06",
+        "type": "join",
+        "amount": "632.887022",
+        "timestamp": "2025-11-25T16:57:19.688Z",
+        "from": "0x7d588977df5b918d",
+        "to": "0xf5f714af615fe697"
+      },
+      {
+        "hash": "0xq9bi933ngdhlu3w7xx4e9c9h2dmffiidn0k597wtruy2",
+        "type": "join",
+        "amount": "975.351897",
+        "timestamp": "2025-11-25T16:48:09.240Z",
+        "from": "0xa6d2a45b32831dcd",
+        "to": "0x4bf8e7bf94c593db"
+      },
+      {
+        "hash": "0xoit39xg3o09wg0wkoxr7km12fnudaa9kpzmyxdjcs1tr",
+        "type": "join",
+        "amount": "444.029277",
+        "timestamp": "2025-11-25T17:39:19.698Z",
+        "from": "0xe92283797841076a",
+        "to": "0x383e2f528ca3a599"
+      },
+      {
+        "hash": "0xpd5d936dkud9726gdqc6xaimsleogffjhhgcfoygz5k",
+        "type": "join",
+        "amount": "772.891550",
+        "timestamp": "2025-11-25T16:14:48.184Z",
+        "from": "0xcf27c759389066a3",
+        "to": "0xbf50c6915d5415b5"
+      },
+      {
+        "hash": "0xsbv292kicpn2bntf98kcpci5w2492qqfgjpev89mn7o",
+        "type": "exit",
+        "amount": "260.617904",
+        "timestamp": "2025-11-25T17:17:34.873Z",
+        "from": "0x36a01c634421026e",
+        "to": "0x3fa9729a38c01461"
       }
     ]
   }
