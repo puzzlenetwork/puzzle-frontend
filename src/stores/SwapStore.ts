@@ -1,8 +1,13 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, reaction } from "mobx";
 import { erc20Abi, formatUnits, parseUnits } from "viem";
 import { getPublicClient, waitForTransactionReceipt, writeContract } from "wagmi/actions";
 
+import lidaLogo from "@assets/tokens/lida.jpg";
+import vladLogo from "@assets/tokens/vlad.png";
+import vovaLogo from "@assets/tokens/vova.jpg";
+
 import { NetworkConfig, NETWORKS } from "@constants/networkConfig";
+import { TOKEN_TYPE, TOKENS, TTokenConfig } from "@constants/tokenConfig";
 import { wagmiConfig } from "@constants/wagmiConfig";
 import { debounceAsync } from "@utils/debounce";
 import { FormattedPoolData, getRangePoolData } from "@utils/rangePoolDataFetcher";
@@ -37,9 +42,10 @@ class SwapStore {
   constructor(private rootStore: RootStore) {
     makeAutoObservable(this);
 
-    this.tokens = this.rootStore.accountStore.tokens;
-    this.sellToken = this.rootStore.accountStore.tokensBySymbol.VOV;
-    this.buyToken = this.rootStore.accountStore.tokensBySymbol.LID;
+    // Initialize tokens from account store and pool data
+    this.tokens = this.rootStore.accountStore.tokens; // Start with account store tokens
+    this.sellToken = this.rootStore.accountStore.tokensBySymbol.VOV || this.tokens[0];
+    this.buyToken = this.rootStore.accountStore.tokensBySymbol.LID || this.tokens[1];
     this.payAmount = "0.00";
     this.receiveAmount = "0.00";
 
@@ -49,7 +55,97 @@ class SwapStore {
     // Загружаем данные пула при инициализации
     this.fetchPoolData();
 
+    // Load tokens from pools asynchronously after initialization
+    this.loadTokensFromPools();
+
+    // Set up reaction to update tokens when account store tokens change
+    this.setupTokensReaction();
+
     this.setPayAmount("100");
+  }
+
+  // Set up reaction to update tokens when account store tokens change
+  private setupTokensReaction() {
+    reaction(
+      () => this.rootStore.accountStore.tokens,
+      () => {
+        // Reinitialize tokens when account store tokens change
+        this.initializeTokens().catch((error) => {
+          console.error("Error reinitializing tokens:", error);
+        });
+      },
+    );
+  }
+
+  // Load tokens from pools asynchronously after store initialization
+  private async loadTokensFromPools() {
+    try {
+      await this.initializeTokens();
+      // Update sell and buy tokens if they were using placeholder tokens
+      if (!this.rootStore.accountStore.tokensBySymbol.VOV && this.tokens.length > 0) {
+        this.sellToken = this.tokens[0];
+      }
+      if (!this.rootStore.accountStore.tokensBySymbol.LID && this.tokens.length > 1) {
+        this.buyToken = this.tokens[1];
+      }
+    } catch (error) {
+      console.error("Error loading tokens from pools:", error);
+    }
+  }
+
+  // Initialize tokens from both account store and pool data
+  async initializeTokens() {
+    // Get tokens from account store (hardcoded tokens)
+    const accountTokens = this.rootStore.accountStore.tokens;
+
+    // Get tokens from pool data
+    const poolListService = await import("../services/PoolListService").then((m) => m.default);
+    const pools = await poolListService.getPoolsData();
+
+    // Extract all unique tokens from pools
+    const poolTokens = new Map<string, Token>();
+    pools.forEach((pool) => {
+      pool.tokens.forEach((tokenInfo) => {
+        // Check if we already have this token from account store
+        const existingToken = accountTokens.find((t) => t.address?.toLowerCase() === tokenInfo.address.toLowerCase());
+
+        if (!existingToken) {
+          // Create a new token from pool data if not already in account store
+          const tokenConfig = {
+            type: TOKEN_TYPE.ERC20,
+            symbol: tokenInfo.symbol as TOKENS,
+            name: tokenInfo.name,
+            decimals: tokenInfo.decimals,
+            address: tokenInfo.address as `0x${string}`,
+            // Use default logos or assign based on known tokens
+            logo: this.getTokenLogo(tokenInfo.symbol),
+          };
+          const token = new Token(tokenConfig);
+          poolTokens.set(tokenInfo.address.toLowerCase(), token);
+        }
+      });
+    });
+
+    // Combine account tokens and pool tokens
+    this.tokens = [...accountTokens, ...Array.from(poolTokens.values())];
+  }
+
+  // Helper method to get token logo based on symbol
+  getTokenLogo(symbol: string): string | undefined {
+    // Map symbols to imported logos
+    const tokenLogos: Record<string, string> = {
+      VOV: vovaLogo,
+      VLD: vladLogo,
+      LID: lidaLogo,
+      // Add more known tokens here
+    };
+
+    return tokenLogos[symbol.toUpperCase()] || undefined;
+  }
+
+  // Method to refresh tokens from pool data
+  async refreshTokensFromPools() {
+    await this.initializeTokens();
   }
 
   get sellTokenPrice() {
@@ -332,9 +428,31 @@ class SwapStore {
       this.setIsPoolDataLoading(true);
 
       const networkConfig = NetworkConfig[NETWORKS.SEPOLIA];
-      const tokens = Object.values(networkConfig.tokens);
+      // Convert Token objects back to TTokenConfig format for the function
+      const tokenConfigs = this.tokens.map((token) => {
+        // Use the original config since Token doesn't expose type directly
+        if (token.config) {
+          return token.config as TTokenConfig;
+        } else {
+          // Fallback for tokens created dynamically
+          return {
+            type: TOKEN_TYPE.ERC20,
+            symbol: token.symbol as TOKENS,
+            name: token.name,
+            decimals: token.decimals,
+            address: token.address as `0x${string}`,
+            logo: token.logo,
+            priceFeed: token.priceFeed,
+          } as TTokenConfig;
+        }
+      });
 
-      const poolData = await getRangePoolData(networkConfig, tokens, this.sellToken.address!, this.buyToken.address!);
+      const poolData = await getRangePoolData(
+        networkConfig,
+        tokenConfigs,
+        this.sellToken.address!,
+        this.buyToken.address!,
+      );
 
       if (poolData) {
         this.poolData = poolData;
@@ -475,13 +593,13 @@ class SwapStore {
 
       if (details.tokens.length >= 2) {
         // Find the first two tokens in the pool from our available tokens
-        // Use the account store's tokens which have logos to ensure we get the full token info
-        const accountStoreTokens = this.rootStore.accountStore.tokens;
+        // Use all available tokens (both account store and pool tokens)
+        const allAvailableTokens = this.tokens;
 
-        const firstToken = accountStoreTokens.find(
+        const firstToken = allAvailableTokens.find(
           (token) => token.address?.toLowerCase() === details.tokens[0].address.toLowerCase(),
         );
-        const secondToken = accountStoreTokens.find(
+        const secondToken = allAvailableTokens.find(
           (token) => token.address?.toLowerCase() === details.tokens[1].address.toLowerCase(),
         );
 
@@ -499,7 +617,7 @@ class SwapStore {
           console.warn("Could not find matching tokens for pool:", poolAddress);
           console.log(
             "Available tokens:",
-            accountStoreTokens.map((t) => t.symbol),
+            allAvailableTokens.map((t) => t.symbol),
           );
           console.log(
             "Pool tokens:",
@@ -528,6 +646,31 @@ class SwapStore {
           if (firstTokenBySymbol && secondTokenBySymbol) {
             this.sellToken = firstTokenBySymbol;
             this.buyToken = secondTokenBySymbol;
+            this.setPayAmount("100");
+            await this.fetchPoolData();
+          } else {
+            // If we still can't find the tokens, try to create them dynamically from pool details
+            // This handles the case where tokens exist in pools but are not in the predefined list
+            const firstTokenFromDetails = new Token({
+              type: TOKEN_TYPE.ERC20,
+              symbol: details.tokens[0].symbol as TOKENS,
+              name: details.tokens[0].name,
+              decimals: details.tokens[0].decimals,
+              address: details.tokens[0].address as `0x${string}`,
+              logo: this.getTokenLogo(details.tokens[0].symbol),
+            });
+
+            const secondTokenFromDetails = new Token({
+              type: TOKEN_TYPE.ERC20,
+              symbol: details.tokens[1].symbol as TOKENS,
+              name: details.tokens[1].name,
+              decimals: details.tokens[1].decimals,
+              address: details.tokens[1].address as `0x${string}`,
+              logo: this.getTokenLogo(details.tokens[1].symbol),
+            });
+
+            this.sellToken = firstTokenFromDetails;
+            this.buyToken = secondTokenFromDetails;
             this.setPayAmount("100");
             await this.fetchPoolData();
           }

@@ -139,8 +139,25 @@ export const SwapScreen: React.FC = observer(() => {
           poolTokensAddresses.some((token) => token.toLowerCase() === el.asset.address?.toLowerCase()),
       );
     } else {
-      // For general swap, show all available tokens
-      return accountStore.formattedBalanceInfoList.filter((el) => assets.some((item) => item.assetId === el.assetId));
+      // For general swap, show all available tokens from all pools and account store
+      // Include tokens even if user doesn't have a balance (balance will show as 0)
+      const allTokenAssets = assets.map((token) => {
+        const balanceInfo = accountStore.formattedBalanceInfoList.find((el) => el.assetId === token.assetId);
+
+        if (balanceInfo) {
+          return balanceInfo;
+        } else {
+          // Create a default asset block with 0 balance for tokens without balance
+          return {
+            assetId: token.assetId,
+            asset: token,
+            balance: "0",
+            price: oracleStore.getTokenIndexPrice(token.priceFeed)?.toString() || "-",
+          };
+        }
+      });
+
+      return allTokenAssets;
     }
   };
 
