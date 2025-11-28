@@ -11,7 +11,8 @@
     "predeploy": "pnpm run build",
     "deploy": "gh-pages -d build",
     "prepare": "husky",
-    "extract-pool-data": "tsx scripts/extractPoolData.ts"
+    "extract-pool-data": "tsx scripts/extractPoolData.ts",
+    "enhance-pool-data": "tsx scripts/enhancePoolDataWithTransactions.ts"
   },
   "engines": {
     "node": ">=22.14.0",

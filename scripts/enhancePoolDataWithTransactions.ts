@@ -12,21 +12,21 @@ interface TokenInfo {
 
 interface PoolData {
   poolAddress: string;
- blockNumber: number;
+  blockNumber: number;
   transactionHash: string;
- name: string;
- symbol: string;
+  name: string;
+  symbol: string;
   totalSupply: string;
   tokens: TokenInfo[];
   transactions?: TransactionData[]; // Optional since we're adding it
 }
 
 interface TransactionData {
- hash: string;
- type: string; // 'swap', 'join', 'exit'
+  hash: string;
+  type: string; // 'swap', 'join', 'exit'
   amount: string;
   timestamp: string;
- from: string;
+  from: string;
   to: string;
 }
 
@@ -52,7 +52,7 @@ function generateMockTransactions(poolAddress: string, count: number = 5): Trans
 
 // Main function to enhance the pool data
 async function enhancePoolData() {
- try {
+  try {
     // Get the directory name for ES modules
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
@@ -82,7 +82,7 @@ async function enhancePoolData() {
       fs.writeFileSync(backupPath, poolDataContent);
       console.log('Created backup of original data');
     }
- } catch (error) {
+  } catch (error) {
     console.error('Error enhancing pool data:', error);
   }
 }
