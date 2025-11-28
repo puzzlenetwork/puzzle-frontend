@@ -103,6 +103,9 @@ export const usePoolCreation = (): PoolCreationHandlers => {
       // Wait for the transaction to be mined
       await publicClient.waitForTransactionReceipt({ hash });
 
+      // Note: Initial liquidity for range pools would be handled in the LiquidityControls component
+      // after the pool is created, not during the creation process itself
+
       // Redirect to pools list
       navigate("/pools");
     } catch (err: any) {

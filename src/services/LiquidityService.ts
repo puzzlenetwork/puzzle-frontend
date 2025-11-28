@@ -7,6 +7,7 @@ import { wagmiConfig } from "@constants/wagmiConfig";
 
 import { RANGE_POOL_ABI } from "../abi/rangePoolABI";
 import { VAULT_ABI } from "../abi/vaultABI";
+import { RangePoolEncoder } from "../utils/RangePoolEncoder";
 
 // Complete ERC20 ABI with approve function
 const ERC20_ABI = [
@@ -141,6 +142,7 @@ export interface JoinPoolParams {
   sender: string; // Sender address
   recipient: string; // Recipient address
   fromInternalBalance: boolean;
+  vBalances?: string[]; // Virtual balances for range pools
 }
 
 export interface ExitPoolParams {
@@ -188,6 +190,7 @@ export class LiquidityService {
         abi: ERC20_ABI,
         functionName: "approve",
         args: [vaultAddress as `0x${string}`, amountBigInt],
+        gas: 100000n, // 100k gas should be sufficient for approval
       });
 
       hashes.push(hash);
@@ -205,6 +208,7 @@ export class LiquidityService {
     recipient: string,
     fromInternalBalance: boolean,
     wagmiConfig: Config,
+    vBalances?: string[], // Virtual balances for range pools
   ): Promise<`0x${string}`> {
     // Get the vault address from the pool
     const publicClient = getPublicClient(wagmiConfig);
@@ -212,8 +216,12 @@ export class LiquidityService {
       throw new Error("Public client not available");
     }
 
+    // Extract pool address from poolId (first 42 characters should be the address with 0x prefix)
+    // This assumes the poolId format starts with the pool address
+    const poolAddress = poolId.substring(0, 42) as `0x${string}`;
+
     const poolContract = getContract({
-      address: sender as `0x${string}`, // sender is the pool address here
+      address: poolAddress,
       abi: RANGE_POOL_ABI,
       client: publicClient,
     });
@@ -222,6 +230,26 @@ export class LiquidityService {
 
     // Convert amounts to BigInts
     const amountsBigInt = amounts.map((amount) => BigInt(amount));
+
+    // Prepare userData based on whether virtual balances are provided
+    let userData: `0x${string}` = "0x";
+
+    if (vBalances && vBalances.length > 0) {
+      // Validate that actual amounts don't exceed virtual balances
+      for (let i = 0; i < amountsBigInt.length; i++) {
+        if (amountsBigInt[i] > BigInt(vBalances[i])) {
+          throw new Error(
+            `Actual amount ${amounts[i]} exceeds virtual balance ${vBalances[i]} for token at index ${i}`,
+          );
+        }
+      }
+
+      // Convert virtual balances to BigInts
+      const vBalancesBigInt = vBalances.map((vBalance) => BigInt(vBalance));
+
+      // Encode the initialization data with virtual balances
+      userData = RangePoolEncoder.joinInit(amountsBigInt, vBalancesBigInt);
+    }
 
     return await writeContract(wagmiConfig, {
       address: vaultAddress,
@@ -234,10 +262,12 @@ export class LiquidityService {
         {
           assets: tokens.map((t) => t as `0x${string}`),
           maxAmountsIn: amountsBigInt,
-          userData: "0x", // Empty user data for now
+          userData: userData,
           fromInternalBalance: fromInternalBalance,
         },
       ],
+      // Add gas limit to avoid excessive gas estimation
+      gas: 5000000n, // 5M gas should be sufficient for most operations
     });
   }
 
@@ -257,8 +287,11 @@ export class LiquidityService {
       throw new Error("Public client not available");
     }
 
+    // Extract pool address from poolId (first 42 characters should be the address with 0x prefix)
+    const poolAddress = poolId.substring(0, 42) as `0x${string}`;
+
     const poolContract = getContract({
-      address: sender as `0x${string}`, // sender is the pool address here
+      address: poolAddress,
       abi: RANGE_POOL_ABI,
       client: publicClient,
     });
@@ -283,6 +316,8 @@ export class LiquidityService {
           toInternalBalance: toInternalBalance,
         },
       ],
+      // Add gas limit to avoid excessive gas estimation
+      gas: 3000000n, // 3M gas should be sufficient for exit operations
     });
   }
 
@@ -295,7 +330,7 @@ export class LiquidityService {
       throw new Error("Public client not available");
     }
 
-    // Get vault address from pool
+    // Use the provided poolAddress instead of extracting from poolId
     const poolContract = getContract({
       address: poolAddress as `0x${string}`,
       abi: RANGE_POOL_ABI,

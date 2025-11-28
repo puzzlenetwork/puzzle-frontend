@@ -269,20 +269,26 @@ const LiquidityControls: React.FC<LiquidityControlsProps> = observer(({ poolAddr
       // Get current pool tokens to match addresses
       const poolTokens = await LiquidityService.getPoolTokens(poolAddress, poolId);
 
-      // Get actual vault address for approval
-      const publicClient = getPublicClient(accountStore.wagmiConfig!);
-      if (!publicClient) {
-        throw new Error("Public client not available");
-      }
-
-      const vaultAddress = (await publicClient.readContract({
-        address: poolAddress as `0x${string}`,
-        abi: RANGE_POOL_ABI,
-        functionName: "getVault",
-      })) as string;
+      // The vault address will be retrieved inside the joinPool function
+      // We don't need to get it separately here since joinPool handles it
 
       // Approve tokens for vault
       setApproving(true);
+      const vaultAddress = await (async () => {
+        const publicClient = getPublicClient(accountStore.wagmiConfig!);
+        if (!publicClient) {
+          throw new Error("Public client not available");
+        }
+
+        const poolContract = getContract({
+          address: poolAddress as `0x${string}`,
+          abi: RANGE_POOL_ABI,
+          client: publicClient,
+        });
+
+        return (await poolContract.read.getVault()) as string;
+      })();
+
       const approvalHashes = await LiquidityService.approveTokensForVault(
         poolTokens.tokens,
         vaultAddress,
@@ -293,9 +299,12 @@ const LiquidityControls: React.FC<LiquidityControlsProps> = observer(({ poolAddr
 
       if (approvalHashes.length > 0) {
         notificationStore.info({ text: "Approving tokens..." });
-        // Wait for approvals to complete
-        for (const hash of approvalHashes) {
-          await publicClient.waitForTransactionReceipt({ hash });
+        const publicClient = getPublicClient(accountStore.wagmiConfig!);
+        if (publicClient) {
+          // Wait for approvals to complete
+          for (const hash of approvalHashes) {
+            await publicClient.waitForTransactionReceipt({ hash });
+          }
         }
       }
       setApproving(false);
@@ -303,16 +312,26 @@ const LiquidityControls: React.FC<LiquidityControlsProps> = observer(({ poolAddr
       // Execute join pool
       notificationStore.info({ text: "Providing liquidity..." });
 
+      // Calculate virtual balances for range pools (actual amounts with 20% buffer)
+      const actualAmounts = tokenAmounts.map((ta) => ta.amount);
+      const vBalances = actualAmounts.map((amount) => {
+        // Convert to BigInt, add 20% buffer, then convert back to string
+        const amountBigInt = BigInt(amount);
+        const bufferAmount = (amountBigInt * 120n) / 100n; // Add 20% buffer
+        return bufferAmount.toString();
+      });
+
       // Execute join pool using the LiquidityService
       await LiquidityService.joinPool(
         poolId,
         poolTokens.tokens,
-        tokenAmounts.map((ta) => ta.amount),
+        actualAmounts,
         "0", // minBptAmount - should calculate based on slippage
         accountStore.address!,
         accountStore.address!,
         false, // fromInternalBalance
         accountStore.wagmiConfig!,
+        vBalances, // Pass virtual balances for range pools
       );
 
       notificationStore.success({ text: "Liquidity provided successfully!" });
@@ -351,20 +370,17 @@ const LiquidityControls: React.FC<LiquidityControlsProps> = observer(({ poolAddr
         throw new Error("Public client not available");
       }
 
-      const totalSupply = (await publicClient.readContract({
+      const poolContract = getContract({
         address: poolAddress as `0x${string}`,
         abi: RANGE_POOL_ABI,
-        functionName: "totalSupply",
-      })) as bigint;
+        client: publicClient,
+      });
+
+      const totalSupply = (await poolContract.read.totalSupply()) as bigint;
       const userBptAmount = BigInt(bptAmount.toString());
 
       // Validate that user doesn't try to withdraw more than they own
-      const userBalance = (await publicClient.readContract({
-        address: poolAddress as `0x${string}`,
-        abi: RANGE_POOL_ABI,
-        functionName: "balanceOf",
-        args: [accountStore.address as `0x${string}`],
-      })) as bigint;
+      const userBalance = (await poolContract.read.balanceOf([accountStore.address as `0x${string}`])) as bigint;
 
       if (userBptAmount > userBalance) {
         throw new Error("Cannot withdraw more than your pool balance");
