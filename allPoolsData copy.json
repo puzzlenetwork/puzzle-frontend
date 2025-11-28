@@ -1,0 +1,474 @@
+[
+  {
+    "poolAddress": "0xB65DBb99fee05340Fd070b7F518026fe0360dC27",
+    "blockNumber": 9185327,
+    "transactionHash": "0xc31381f4d502273a984abc9a983d012b64441ecb009519351c8cbd0878a3bd4f",
+    "name": "LID/VOV",
+    "symbol": "LDV",
+    "totalSupply": "52871546179335305",
+    "tokens": [
+      {
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
+        "decimals": 18
+      },
+      {
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0x6t6xnflkzh6iinc3eku8q12gjk3jqbfpaphvjxai3g4",
+        "type": "join",
+        "amount": "561.439662",
+        "timestamp": "2025-11-25T17:41:38.149Z",
+        "from": "0x1c451d66f4d67590",
+        "to": "0xb1ae4cb25bdf083d"
+      },
+      {
+        "hash": "0xnhob33hrs08xtptzqivi2bwn4ovcubzoofj121igzv7e",
+        "type": "swap",
+        "amount": "800.827777",
+        "timestamp": "2025-11-25T16:20:35.243Z",
+        "from": "0xd51f410a37ef42ff",
+        "to": "0xb494b8ac5dedadbd"
+      },
+      {
+        "hash": "0x2ddt62m4fo9m53vysw8qjnrnys2a69fijobqqabii9",
+        "type": "join",
+        "amount": "423.970497",
+        "timestamp": "2025-11-25T17:15:15.133Z",
+        "from": "0x29476019b6dcfbad",
+        "to": "0x76cdd3d23a1941f4"
+      },
+      {
+        "hash": "0xap2qbvjionse9g5qt2o7tzamo2wmyqgo3g4dxrmw8rn",
+        "type": "swap",
+        "amount": "430.495566",
+        "timestamp": "2025-11-25T15:38:16.987Z",
+        "from": "0x62414fa465d7a9b3",
+        "to": "0x990ebb3d7359bf1f"
+      },
+      {
+        "hash": "0x1zm9njyaritg8w148f10z85mrsgpwln0nughev3f42rr",
+        "type": "exit",
+        "amount": "8.939498",
+        "timestamp": "2025-11-25T15:52:28.226Z",
+        "from": "0x9f4fc4aae844937e",
+        "to": "0x0445e2e6539e0b7f"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0x0268eB8E2Bc62863C3936278c8DDB80Cc2F7FB28",
+    "blockNumber": 9189901,
+    "transactionHash": "0x36fe14ca5e588fd6b00729a4a951113028551a6005911f516cdddef0abff06ac",
+    "name": "VLD/LID/VOV",
+    "symbol": "VLV",
+    "totalSupply": "0",
+    "tokens": [
+      {
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
+        "decimals": 18
+      },
+      {
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
+        "decimals": 18
+      },
+      {
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0xvgctp0oit7ch4z0d9vbmcpjbln00p4yajdk9ywgdph",
+        "type": "exit",
+        "amount": "903.163087",
+        "timestamp": "2025-11-25T17:21:44.130Z",
+        "from": "0xf689485df91ae461",
+        "to": "0x13332ece5c483b2e"
+      },
+      {
+        "hash": "0x9i962y25lcumfbibx8e9d462ipnhrbf6pe9j1rlbru",
+        "type": "exit",
+        "amount": "846.294575",
+        "timestamp": "2025-11-25T16:54:02.273Z",
+        "from": "0x1267bf461667e2db",
+        "to": "0x40784088c57d7b26"
+      },
+      {
+        "hash": "0xcxjwxri00fquism6qm9t394qu4n7k5e7e5s7vy4ro7w",
+        "type": "exit",
+        "amount": "29.859574",
+        "timestamp": "2025-11-25T16:23:28.438Z",
+        "from": "0x4a19abaaa12dd6e7",
+        "to": "0x550a1d7c6f525936"
+      },
+      {
+        "hash": "0x2z72cvp33z3nhs1a1t7g6p41800z0o695nrok2atn6m",
+        "type": "swap",
+        "amount": "644.629747",
+        "timestamp": "2025-11-25T17:38:51.938Z",
+        "from": "0x6f0f65de08885885",
+        "to": "0x03f6aac8b174fb74"
+      },
+      {
+        "hash": "0xrw2fj15636uzv7iy5fvk6qy8kjbf5s7669r9olvfgw",
+        "type": "swap",
+        "amount": "934.435477",
+        "timestamp": "2025-11-25T15:54:35.891Z",
+        "from": "0x110c5c769913309a",
+        "to": "0x623c19d4d3536a50"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0xaC62b0Ece37B07433B16c219fba31FF2551DBf36",
+    "blockNumber": 9189930,
+    "transactionHash": "0x03d5a5055c5d2a3e30595c83fb02752670cfb21f35f57f573cebc67700c6fbe0",
+    "name": "VLD/LID/VOV",
+    "symbol": "VLV",
+    "totalSupply": "0",
+    "tokens": [
+      {
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
+        "decimals": 18
+      },
+      {
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
+        "decimals": 18
+      },
+      {
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0xbaochflyxz888xy79w6xe825en0yys9rrxfl0ojhpqw",
+        "type": "join",
+        "amount": "786.064645",
+        "timestamp": "2025-11-25T16:15:14.090Z",
+        "from": "0x47306a56d6df2469",
+        "to": "0x97d0760cddc29339"
+      },
+      {
+        "hash": "0xpgwpuv2ojzl40yhdd3hbh6n3l3w34huib5en51izngg",
+        "type": "join",
+        "amount": "313.718818",
+        "timestamp": "2025-11-25T16:24:37.588Z",
+        "from": "0x2d80886accf6cba5",
+        "to": "0x2e2f0f9ec6831c48"
+      },
+      {
+        "hash": "0x6g8e7yixagwyakdsryaaf5k8taqvtymbki1shdiwhir",
+        "type": "swap",
+        "amount": "291.615246",
+        "timestamp": "2025-11-25T16:41:27.847Z",
+        "from": "0x56e27ac2a1441b15",
+        "to": "0xa1a90cac3013e661"
+      },
+      {
+        "hash": "0x9ayxyjw14micetz6vfk58jujgq3j2l0kdlazbgsb1ik",
+        "type": "exit",
+        "amount": "14.702073",
+        "timestamp": "2025-11-25T17:05:56.077Z",
+        "from": "0x24a9b4e1200f28a6",
+        "to": "0x738bc4eea44bfdef"
+      },
+      {
+        "hash": "0xwqidrc01fs9cvzpj79g5p9q8nr8s7rn5r6svdwe01war",
+        "type": "swap",
+        "amount": "388.831724",
+        "timestamp": "2025-11-25T15:43:57.528Z",
+        "from": "0x001ebd6c37ef4fc4",
+        "to": "0x2948503d41c91ebe"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0x191f973661f0f72a35b1941a51A1318A9259D5e4",
+    "blockNumber": 9189947,
+    "transactionHash": "0x7bdecdefa6f9408724f28aacbaf9403382c080b36d3a0804c6e01821ca495eca",
+    "name": "VLD/LID/VOV",
+    "symbol": "VLV",
+    "totalSupply": "605999999999981814546",
+    "tokens": [
+      {
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
+        "decimals": 18
+      },
+      {
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
+        "decimals": 18
+      },
+      {
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0xwrcdldaeph96eh2jy46t9v68vwsdm89yhjkoke18x",
+        "type": "swap",
+        "amount": "477.696338",
+        "timestamp": "2025-11-25T18:02:53.814Z",
+        "from": "0x1768f2dae8efabff",
+        "to": "0x5553b755c3e370fc"
+      },
+      {
+        "hash": "0x6ywa30x5wgr9l2xgdt4pyleourgqlvqspcyrjkkuex7h",
+        "type": "swap",
+        "amount": "473.322308",
+        "timestamp": "2025-11-25T17:20:33.693Z",
+        "from": "0x46cccafd35a1fa64",
+        "to": "0x9d51fddcd1211cf3"
+      },
+      {
+        "hash": "0x9bgrrnowft9tzuigedi4uo8rn7220ecjudn8c6hm1j",
+        "type": "join",
+        "amount": "11.462396",
+        "timestamp": "2025-11-25T15:27:10.590Z",
+        "from": "0xf566e631acb3b16d",
+        "to": "0xf87a1343dfe4fb16"
+      },
+      {
+        "hash": "0xmwcjfs66zqh7y9sldh6eglljnvgkxmlfc6i7psrzb",
+        "type": "swap",
+        "amount": "951.258410",
+        "timestamp": "2025-11-25T17:19:33.412Z",
+        "from": "0x506e9fc208530e35",
+        "to": "0x28b592e1eb2e3f97"
+      },
+      {
+        "hash": "0xx4zihnop0sey2186ucme8r5d0re6wpw8j6bffu0gxlmg",
+        "type": "join",
+        "amount": "275.138295",
+        "timestamp": "2025-11-25T16:06:32.805Z",
+        "from": "0x3867b5992f9ea14a",
+        "to": "0x7a80eadaba7903de"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0x5e8c6F7F5f11047f23C8dF00941cd09a394A34E0",
+    "blockNumber": 9197389,
+    "transactionHash": "0x7c65633d0cecd6813319a2b44003261bf9b613acd088fca4c613b98c3414cf08",
+    "name": "VLD/LID/VOV",
+    "symbol": "VLV",
+    "totalSupply": "605999999999981814546",
+    "tokens": [
+      {
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
+        "decimals": 18
+      },
+      {
+        "address": "0xAA6ef6F47522c2fb4e8CF8F83Ca98E56A8715bed",
+        "name": "Vlad Token",
+        "symbol": "VLD",
+        "decimals": 18
+      },
+      {
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0x8pfyh9fsmwmvam2zgukbsyvad3tf51jq5mgtrhqyn1f",
+        "type": "swap",
+        "amount": "381.777131",
+        "timestamp": "2025-11-25T15:51:44.545Z",
+        "from": "0x483d77c0bce42c7a",
+        "to": "0x105bc7c90731eb57"
+      },
+      {
+        "hash": "0xrl6kjomakbmmqrxw03f9gfrq87nwins4n3ty29hxzr",
+        "type": "swap",
+        "amount": "815.211498",
+        "timestamp": "2025-11-25T16:00:55.362Z",
+        "from": "0x2826ae87e26e12e2",
+        "to": "0x868a98992588c682"
+      },
+      {
+        "hash": "0xx1lshq2h4484cw9zbntsz5scwax7xjdnaqx9zaun37c",
+        "type": "exit",
+        "amount": "326.761263",
+        "timestamp": "2025-11-25T17:38:45.550Z",
+        "from": "0x2d02d4b7efb5fbcf",
+        "to": "0x150953af91dd32d6"
+      },
+      {
+        "hash": "0x62l4seeh8eh79k9j4nhq2bek0el0wq71pt572k3gqf3l",
+        "type": "exit",
+        "amount": "655.560143",
+        "timestamp": "2025-11-25T15:20:43.061Z",
+        "from": "0x2f65f4e377070b42",
+        "to": "0x138d14972ab8ac9c"
+      },
+      {
+        "hash": "0xb4n0k3aqjo93oeo2avmk5a6mve9f1685ejswct57ezr9",
+        "type": "exit",
+        "amount": "357.600328",
+        "timestamp": "2025-11-25T16:33:06.753Z",
+        "from": "0x06303baf66d389d5",
+        "to": "0xc195e1427ff453b1"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0x4BC1567b6dfc4bC71F8Ab807DFdCB6CdEb3d8B75",
+    "blockNumber": 9197783,
+    "transactionHash": "0x3e51a17776d4816f208e0a5038b0700860faccc1ec3e0010f03db68b8833cad6",
+    "name": "LID/VOV",
+    "symbol": "LDV",
+    "totalSupply": "0",
+    "tokens": [
+      {
+        "address": "0x6778CbA88EDd82244363fd8c77dA539b72f79a9b",
+        "name": "Lida Token",
+        "symbol": "LID",
+        "decimals": 18
+      },
+      {
+        "address": "0xdFa4A4E342E43bd85c7E7Fe4d4114fEC11DebF0D",
+        "name": "Vova Token",
+        "symbol": "VOV",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0x81ozbcxxo4is85vy60mhij4xtba3sgkjwtyam0uk1gnj",
+        "type": "swap",
+        "amount": "377.328228",
+        "timestamp": "2025-11-25T17:14:10.551Z",
+        "from": "0xfc05b5ace5d1bea6",
+        "to": "0xd634e39f5bb850d0"
+      },
+      {
+        "hash": "0x0h2uc6sdiraj7r9ud0se01855w4jccv4pdnoerxtg62a",
+        "type": "join",
+        "amount": "186.459975",
+        "timestamp": "2025-11-25T17:39:37.102Z",
+        "from": "0xf826a5e80c76a5af",
+        "to": "0x87412ce67e6bb3ea"
+      },
+      {
+        "hash": "0xuu82ry09lyrtqbailg682ovympoz7zpmm6e1dh57r03c",
+        "type": "swap",
+        "amount": "663.034368",
+        "timestamp": "2025-11-25T15:19:54.850Z",
+        "from": "0xc3185d2182d7ef77",
+        "to": "0xb909cff13540ae1d"
+      },
+      {
+        "hash": "0x5216ikfpw2gxagwtsfhnblim8y5cdexxth4q1pwh7k",
+        "type": "swap",
+        "amount": "292.179840",
+        "timestamp": "2025-11-25T17:15:53.215Z",
+        "from": "0xae01ab5903f977cb",
+        "to": "0xd5abf6f022fc7fe9"
+      },
+      {
+        "hash": "0xinnb02jngjoemf36ce6irw55unvsiahkfkokcmwqqo",
+        "type": "exit",
+        "amount": "557.889464",
+        "timestamp": "2025-11-25T16:28:25.593Z",
+        "from": "0xa9dc276c88de0b60",
+        "to": "0x568f16efdc0a3804"
+      }
+    ]
+  },
+  {
+    "poolAddress": "0x2444f9d00128BEcC8ce136B8CBa6Feb39cc31A01",
+    "blockNumber": 9705327,
+    "transactionHash": "0x7f0d863a27d728357c8f8fa174b2d18527eaea21aaa6df8692d0e9a2a72d0cde",
+    "name": "VA",
+    "symbol": "VA",
+    "totalSupply": "0",
+    "tokens": [
+      {
+        "address": "0x0D44975485895292F9296065Cc17FfF2b3CBCBb3",
+        "name": "VOVA",
+        "symbol": "VVV",
+        "decimals": 18
+      },
+      {
+        "address": "0x82815E9C016BB47136b4FBA21541e3482acaa34a",
+        "name": "ALEX",
+        "symbol": "ALX",
+        "decimals": 18
+      }
+    ],
+    "transactions": [
+      {
+        "hash": "0xyj415opnk59gqpkebtdyzxdrkjjb951fdcl1fnam06",
+        "type": "join",
+        "amount": "632.887022",
+        "timestamp": "2025-11-25T16:57:19.688Z",
+        "from": "0x7d588977df5b918d",
+        "to": "0xf5f714af615fe697"
+      },
+      {
+        "hash": "0xq9bi933ngdhlu3w7xx4e9c9h2dmffiidn0k597wtruy2",
+        "type": "join",
+        "amount": "975.351897",
+        "timestamp": "2025-11-25T16:48:09.240Z",
+        "from": "0xa6d2a45b32831dcd",
+        "to": "0x4bf8e7bf94c593db"
+      },
+      {
+        "hash": "0xoit39xg3o09wg0wkoxr7km12fnudaa9kpzmyxdjcs1tr",
+        "type": "join",
+        "amount": "444.029277",
+        "timestamp": "2025-11-25T17:39:19.698Z",
+        "from": "0xe92283797841076a",
+        "to": "0x383e2f528ca3a599"
+      },
+      {
+        "hash": "0xpd5d936dkud9726gdqc6xaimsleogffjhhgcfoygz5k",
+        "type": "join",
+        "amount": "772.891550",
+        "timestamp": "2025-11-25T16:14:48.184Z",
+        "from": "0xcf27c759389066a3",
+        "to": "0xbf50c6915d5415b5"
+      },
+      {
+        "hash": "0xsbv292kicpn2bntf98kcpci5w2492qqfgjpev89mn7o",
+        "type": "exit",
+        "amount": "260.617904",
+        "timestamp": "2025-11-25T17:17:34.873Z",
+        "from": "0x36a01c634421026e",
+        "to": "0x3fa9729a38c01461"
+      }
+    ]
+  }
+]
